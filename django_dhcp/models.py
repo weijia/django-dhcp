@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -13,3 +14,6 @@ class NetworkNode(models.Model):
 
     def __str__(self):
         return "%s %s %s" % (self.mac_address, self.ip, self.hostname)
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'pk': self.pk})
